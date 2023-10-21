@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>Intelligent Broken Image Restorer</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<<style>
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 350px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<p><h1 align="center">Intelligent Broken Image Restorer</h1></p>
+<div class="container">
+<div class="row">
+    {% if not filename %}
+
+    <h2>Select a file for Identifying the broken portions </h2>
+
+    {% endif %}
+
+    <div align="center">
+    <p style="text-align: center; " >
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+        </div>
+    {% if filename %}
+
+    <div class="gallery">
+        <a target="_blank" href="img_5terre.jpg">
+            <img src="{{ url_for('display_image', filename=filename) }}" width="800" height="500">
+        </a>
+    <div class="desc">Original</div>
+    </div>
+    {% endif %}
+    {% if filenameBroken %}
+
+    <div class="gallery">
+        <a target="_blank" href="img_5terre.jpg">
+            <img src="{{ url_for('display_image', filename=filenameBroken) }}" width="800" height="500">
+        </a>
+    <div class="desc">Broken Highlight</div>
+    </div>
+
+    {% endif %}
+
+    {% if filenameRepair %}
+
+    <div class="gallery">
+        <a target="_blank" href="img_5terre.jpg">
+            <img src="{{ url_for('display_image', filename=filenameRepair) }}" width="800" height="500">
+        </a>
+    <div class="desc">Repair</div>
+    </div>
+
+    {% endif %}
+
+
+    <form method="post" action="/" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" class="form-control" autocomplete="off" required>
+            </p>
+        </dl>
+        <p>
+            <input type="submit" value="Submit" class="btn btn-info">
+        </p>
+    </form>
+</div>
+</div>
+</body>
+</html>
