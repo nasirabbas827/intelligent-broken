@@ -9,7 +9,7 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads/'
 UPLOAD_BROKEN = 'static/broken/'
 
-app.secret_key = "secret key"
+app.secret_key = "YOUR_OWN_API_KEY"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_BROKEN'] = UPLOAD_BROKEN
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
